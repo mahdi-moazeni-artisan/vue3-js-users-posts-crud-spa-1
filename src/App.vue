@@ -1,15 +1,15 @@
 <template>
-  <h1>idea-processors.ir</h1>
-  <div class="alert alert-info" role="alert">
-    A simple info alert—check it out!
-  </div>
+  <Header />
   <router-view></router-view>
 </template>
 
 <script>
-
+import Header from './components/Header.vue';
 export default {
   name: 'App',
+  components : {
+    Header
+  }
 }
 </script>
 
