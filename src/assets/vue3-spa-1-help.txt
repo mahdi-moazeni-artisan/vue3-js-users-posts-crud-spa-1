@@ -1,0 +1,11 @@
+1.install vue-cli
+npm install -g @vue/cli
+-Create a new project:
+vue create vue3-spa-1
+cd vue3-spa-1
+-run folder project in VsCode
+code .
+-installation vue-router with npm
+npm install vue-router@4
+-run project
+npm run serve
