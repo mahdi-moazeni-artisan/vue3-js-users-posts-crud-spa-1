@@ -1,4 +1,5 @@
 <template>
+    <!-- <div v-if="route.params.id==undefined" class="container mt-2"> -->
     <div class="container mt-2">
       <h1>User Page!</h1>
       <div class="row mt-3 g-1">
@@ -10,6 +11,7 @@
         </div>
       </div>
     </div>
+    <!-- <router-view v-else></router-view> -->
   </template>
 
 <script>
@@ -17,12 +19,14 @@ import axios from 'axios';
 import {ref} from 'vue';
 // import UserCardView from '../../components/users/CardView.vue';
 import UserCardView from '@/components/users/CardView.vue';
+import {useRoute} from 'vue-router';
 
 export default {
   components:{UserCardView},
   setup(){
     const users=ref([]);
     const loading=ref(true);
+    const route=useRoute();
 
     function getUsers() {
       // Make a request for a user with a given ID
@@ -44,7 +48,7 @@ export default {
     
     getUsers()
 
-    return { users,loading };
+    return { users,loading,route };
   }
 }
 </script>

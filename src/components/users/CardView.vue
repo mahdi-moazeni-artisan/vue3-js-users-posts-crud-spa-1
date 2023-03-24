@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-        {{ user.name }}
+        <router-link :to="{name:'userShow',params:{id:user.id}}">{{ user.name }}</router-link>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">Username:{{ user.username }}</li>

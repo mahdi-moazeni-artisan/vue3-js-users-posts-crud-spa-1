@@ -1,21 +1,53 @@
 <template>
-    <div class="container mt-2">
-      <h1>User Show Page!</h1>
-      <div class="row mt-3">
-        <div class="col-md-6 border p-1">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus vel a
-            asperiores! Suscipit maxime in dolorem excepturi sequi voluptates,
-            pariatur quas commodi neque quis repudiandae a natus cum, quo non?
-          </p>
-        </div>
+  <div class="container mt-2">
+    <h1>User Show Page!</h1>
+    <div class="row mt-3 g-1">
+      <div v-if="loading" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div v-else class="col-md-3">
+        <UserCardView :user="user"/>
       </div>
     </div>
-  </template>
+  </div>
+</template>
 
 <script>
-export default {
+import axios from 'axios';
+import {ref} from 'vue';
+// import UserCardView from '../../components/users/CardView.vue';
+import UserCardView from '@/components/users/CardView.vue';
+import {useRoute} from 'vue-router';
 
+export default {
+  components:{UserCardView},
+  setup(){
+    const user=ref({});
+    const loading=ref(true);
+    const route=useRoute();
+
+    function getUser() {
+      // Make a request for a user with a given ID
+      axios.get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
+        .then(function (response) {
+          // handle success
+          // console.log(response.data);
+          user.value=response.data;
+          loading.value=false;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
+        });
+    }
+    
+    getUser()
+
+    return { user,loading };
+  }
 }
 </script>
 

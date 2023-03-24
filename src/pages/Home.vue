@@ -8,6 +8,7 @@
           asperiores! Suscipit maxime in dolorem excepturi sequi voluptates,
           pariatur quas commodi neque quis repudiandae a natus cum, quo non?
         </p>
+        <router-link class="btn btn-dark" :to="{name:'usersIndex'}">Users</router-link>
       </div>
     </div>
   </div>
