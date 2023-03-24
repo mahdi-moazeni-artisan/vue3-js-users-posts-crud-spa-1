@@ -21,3 +21,5 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 -install axios
 npm install axios
+
+-add loading from bootstrap
