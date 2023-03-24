@@ -3,7 +3,7 @@
       <h1>User Page!</h1>
       <div class="row mt-3 g-1">
         <div class="col-md-3" v-for="user in users" :key="user.id">
-          <UserCardView/>
+          <UserCardView :user="user"/>
         </div>
       </div>
     </div>

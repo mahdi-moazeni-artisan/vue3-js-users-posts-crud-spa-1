@@ -1,12 +1,12 @@
 <template>
   <div class="card">
     <div class="card-header">
-        Featured
+        {{ user.name }}
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">Username:{{ user.username }}</li>
+        <li class="list-group-item">Email:{{ user.email }}</li>
+        <li class="list-group-item">Phone:{{ user.phone }}</li>
     </ul>
   </div>
 </template>
