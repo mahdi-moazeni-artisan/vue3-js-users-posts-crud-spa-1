@@ -1,13 +1,9 @@
 <template>
     <div class="container mt-2">
-      <h1>Users Index Page!</h1>
-      <div class="row mt-3">
-        <div class="col-md-6 border p-1">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus vel a
-            asperiores! Suscipit maxime in dolorem excepturi sequi voluptates,
-            pariatur quas commodi neque quis repudiandae a natus cum, quo non?
-          </p>
+      <h1>User Page!</h1>
+      <div class="row mt-3 g-1">
+        <div class="col-md-3" v-for="user in users" :key="user.id">
+          <UserCardView/>
         </div>
       </div>
     </div>
@@ -15,15 +11,21 @@
 
 <script>
 import axios from 'axios';
+import {ref} from 'vue';
+import UserCardView from '../../components/users/CardView.vue';
 
 export default {
+  components:{UserCardView},
   setup(){
+    const users=ref([]);
+
     function getUsers() {
       // Make a request for a user with a given ID
       axios.get('https://jsonplaceholder.typicode.com/users')
         .then(function (response) {
           // handle success
-          console.log(response.data);
+          // console.log(response.data);
+          users.value=response.data;
         })
         .catch(function (error) {
           // handle error
@@ -35,6 +37,8 @@ export default {
     }
     
     getUsers()
+
+    return { users };
   }
 }
 </script>
