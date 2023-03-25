@@ -13,13 +13,17 @@
                 <textarea v-model.lazy.trim="form.body" name="" id="inputTextarea" class="form-control" cols="30" rows="10"></textarea>
             </div>
             <div class="form-text text-danger">{{ form.bodyErrorText }}</div>
-            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            <button type="submit" class="btn btn-primary mt-3" :disabled="loading">
+                <div v-if="loading" class="spinner-border spinner-border-sm" role="status">
+                </div>
+                Create Post
+            </button>
         </form>
     </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import axios from 'axios';
 export default {
     setup(){
@@ -29,6 +33,8 @@ export default {
             body:'',
             bodyErrorText:''
         });
+
+        const loading=ref(false);
 
         function validate(){
             if (form.title==='') {
@@ -44,6 +50,7 @@ export default {
             }
 
             if (form.title!==''&&form.body!=='') {
+                loading.value=true;
                 createPost();
             }
         }
@@ -57,6 +64,7 @@ export default {
             .then(function (response) {
             // handle success
             console.log(response.data);
+            loading.value=false;
             })
             .catch(function (error) {
             // handle error
@@ -67,7 +75,7 @@ export default {
             });
         }
 
-        return{form,validate,createPost};
+        return{form,validate,createPost,loading};
     }
 }
 </script>
