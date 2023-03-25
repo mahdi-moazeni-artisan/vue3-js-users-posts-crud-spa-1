@@ -1,5 +1,6 @@
 <template>
-    <div class="container mt-2">
+  <div class="container mt-2">
+      <router-link class="btn btn-dark" :to="{name:'postCreate'}">Create Post</router-link>
       <h1>Posts Page!</h1>
       <div class="row mt-3 g-1">
         <div v-if="loading" class="spinner-border" role="status">

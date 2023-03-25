@@ -8,6 +8,7 @@ import UserShow from './pages/users/Show.vue'
 import PostsTemplate from './pages/posts/Template.vue'
 import PostsIndex from './pages/posts/Index.vue'
 import PostShow from './pages/posts/Show.vue'
+import PostCreate from './pages/posts/Create.vue'
 // import Posts from './pages/Posts.vue'
 
 const routes=[
@@ -19,7 +20,8 @@ const routes=[
     // {path:'/users/:id',name:'usersShow',component:UserShow},
     {path:'/posts',name:'postsTemplate',component:PostsTemplate,children:[
         {path:'',name:'postsIndex',component:PostsIndex},
-        {path:':id',name:'postShow',component:PostShow}
+        {path:':id',name:'postShow',component:PostShow},
+        {path:'create',name:'postCreate',component:PostCreate}
     ]}
 ];
 
