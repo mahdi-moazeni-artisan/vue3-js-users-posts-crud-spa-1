@@ -23,3 +23,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 npm install axios
 
 -add loading from bootstrap
+
+-install sweetalert2
+npm install sweetalert2

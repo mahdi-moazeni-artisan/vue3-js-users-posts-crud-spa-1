@@ -25,6 +25,8 @@
 <script>
 import { reactive, ref } from 'vue'
 import axios from 'axios';
+import Swal from 'sweetalert2'
+
 export default {
     setup(){
         const form=reactive({
@@ -65,10 +67,23 @@ export default {
             // handle success
             console.log(response.data);
             loading.value=false;
+
+            Swal.fire({
+            title: 'Thanks!',
+            text: 'Post created successfully!',
+            icon: 'success',
+            confirmButtonText: 'Ok!'
+            })
             })
             .catch(function (error) {
             // handle error
             console.log(error);
+            Swal.fire({
+            title: 'Error!',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+            })
             })
             .finally(function () {
             // always executed
