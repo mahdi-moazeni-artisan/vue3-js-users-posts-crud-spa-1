@@ -9,6 +9,7 @@
           pariatur quas commodi neque quis repudiandae a natus cum, quo non?
         </p>
         <router-link class="btn btn-dark" :to="{name:'usersIndex'}">Users</router-link>
+        <router-link class="btn btn-dark ms-1" :to="{name:'postsIndex'}">Posts</router-link>
       </div>
     </div>
   </div>
