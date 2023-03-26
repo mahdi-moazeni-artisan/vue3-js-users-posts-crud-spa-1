@@ -26,3 +26,6 @@ npm install axios
 
 -install sweetalert2
 npm install sweetalert2
+
+-deploy
+npm run build
