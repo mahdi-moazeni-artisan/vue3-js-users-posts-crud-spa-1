@@ -9,7 +9,7 @@ import PostsTemplate from './pages/posts/Template.vue'
 import PostsIndex from './pages/posts/Index.vue'
 import PostShow from './pages/posts/Show.vue'
 import PostCreate from './pages/posts/Create.vue'
-// import Posts from './pages/Posts.vue'
+import PostEdit from './pages/posts/Edit.vue'
 
 const routes=[
     {path:'/',name:'home',component:Home},
@@ -21,7 +21,8 @@ const routes=[
     {path:'/posts',name:'postsTemplate',component:PostsTemplate,children:[
         {path:'',name:'postsIndex',component:PostsIndex},
         {path:':id',name:'postShow',component:PostShow},
-        {path:'create',name:'postCreate',component:PostCreate}
+        {path:'create',name:'postCreate',component:PostCreate},
+        {path:'edit/:id',name:'postEdit',component:PostEdit}
     ]}
 ];
 

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h2>Create Post:</h2>
+        <h2>Edit Post:</h2>
         <form @submit.prevent="validate" class="col-md-6">
             <div class="mb-3">
                 <label for="titleId" class="form-label">Title</label>
@@ -16,7 +16,7 @@
             <button type="submit" class="btn btn-primary mt-3" :disabled="loading">
                 <div v-if="loading" class="spinner-border spinner-border-sm" role="status">
                 </div>
-                Create Post
+                Edit Post
             </button>
         </form>
     </div>
@@ -26,6 +26,7 @@
 import { reactive, ref } from 'vue'
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import {useRoute} from 'vue-router';
 
 export default {
     setup(){
@@ -36,8 +37,33 @@ export default {
             bodyErrorText:''
         });
 
-        const loading=ref(false);
+        const formOld=reactive({});
 
+        const loading=ref(false);
+        const route=useRoute();
+
+        const post=ref({});
+
+        function getPost() {
+        // Make a request for a post with a given ID
+        axios.get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+            .then(function (response) {
+            // handle success
+            // console.log(response.data.title);
+            form.title=response.data.title;
+            form.body=response.data.body;
+            })
+            .catch(function (error) {
+            // handle error
+            console.log(error);
+            })
+            .finally(function () {
+            // always executed
+            });
+        }
+        
+        getPost()
+        
         function validate(){
             if (form.title==='') {
                 form.titleErrorText='Title is required!';
@@ -52,13 +78,14 @@ export default {
             }
 
             if (form.title!==''&&form.body!=='') {
-                createPost();
+                updatePost();
             }
         }
 
-        function createPost() {
+        function updatePost() {
             loading.value=true;
-            axios.post('https://jsonplaceholder.typicode.com/posts',{
+            axios.put(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`,{
+                id:route.params.id,
                 title:form.title,
                 body:form.body,
                 userId:1
@@ -70,7 +97,7 @@ export default {
 
             Swal.fire({
             title: 'Thanks!',
-            text: 'Post created successfully!',
+            text: 'Post updated successfully!',
             icon: 'success',
             confirmButtonText: 'Ok!'
             })
@@ -90,7 +117,7 @@ export default {
             });
         }
 
-        return{form,validate,createPost,loading};
+        return{getPost,form,validate,updatePost,loading};
     }
 }
 </script>

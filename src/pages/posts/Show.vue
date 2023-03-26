@@ -5,7 +5,7 @@
       <div v-if="loading" class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
-      <div v-else class="col-md-3">
+      <div v-else class="col-md-8">
         <div class="card">
             <div class="card-header">
                 {{ post.userId }}-{{ post.id }}-{{ post.title }}
@@ -15,7 +15,7 @@
             </ul>
             <div class="card-footer">
               <button class="btn btn-sm btn-danger me-1">Delete</button>
-              <button class="btn btn-sm btn-dark me-1">Edit</button>
+              <router-link class="btn btn-sm btn-dark me-1" :to="{name:'postEdit',params:{id:post.id}}">Edit</router-link>
             </div>
         </div>
       </div>
